@@ -11,8 +11,12 @@ def main():
     args = parser.parse_args()
     file_path = args.path_to_ini
     confparser_obj = confparser.ConfParser(file_path)
-    webdriv_obj = webdriver.WebDriverHandler(confparser_obj.web_driver_conf_dict['chromedriverpath'], confparser_obj.web_driver_conf_dict['url'], confparser_obj.xpath_list, file_path)
-    webdriv_obj.execute_invokes()
+    try:
+        webdriv_obj = webdriver.WebDriverHandler(confparser_obj.web_driver_conf_dict['chromedriverpath'], confparser_obj.web_driver_conf_dict['url'], confparser_obj.xpath_list, file_path)
+        webdriv_obj.execute_invokes()
+    except KeyError as e:
+        print "Unfortunately there were problems", e
+
 
 if __name__ == '__main__':
     main()
