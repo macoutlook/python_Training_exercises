@@ -1,0 +1,5 @@
+C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\java.log
+False
+C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\Reports\report.db
+True
+"CHANGE : "
