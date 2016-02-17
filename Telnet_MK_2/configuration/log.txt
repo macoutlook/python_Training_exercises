@@ -1,0 +1,8 @@
+INFO:root:Program starts
+INFO:CsvHandler:.csv file is read
+INFO:CsvHandler:.csv file was successfully read
+INFO:ConfParser:.ini file was successfully read
+ERROR:root:Problem with wrong key: 'ips' in .ini file
+ERROR:Telnet:[Errno 10061] No connection could be made because the target machine actively refused it
+ERROR:Telnet:Unfortunately Telnet connection was not created
+INFO:root:End of program
