@@ -1,0 +1,19 @@
+***Settings***
+Library	cmath_wrapper
+*** Variables ***
+${SIN} 	 5
+${SQRT}	(16+0j)
+${LOG}  (100+0j)
+
+***Test Cases***
+Simple Test
+	Do Something
+	Get Sin	${SIN}
+	Get Sqrt	${SQRT}
+	Get Log10	${SQRT}
+	
+Returning Value
+	check Sqrt	${SQRT}	(4+0j)
+	
+Failing Test
+	check Sqrt	${SQRT}	(5+0j)

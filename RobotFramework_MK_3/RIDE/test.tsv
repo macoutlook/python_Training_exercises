@@ -1,0 +1,12 @@
+*Settings*							
+Library	cmath_wrapper						
+							
+*Variables*							
+${SIN}	5						
+${SQRT}	(16+0j)						
+${LOG}	(100+0j)						
+							
+*Test Cases*							
+Simple Test	Get Sin	${SIN}					
+	Get Sqrt	${SQRT}					
+	Get Log10	${SQRT}					
