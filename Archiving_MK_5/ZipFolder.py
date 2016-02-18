@@ -49,12 +49,12 @@ class ZipFolder_zipfile(ZipFolder):
         path_for_zip = self.get_path_for_zip()
         self.zip_file_path = path_for_zip + ".zip"
         self.zip_file = ZipFile(self.zip_file_path, 'w', zip_compression)
-        print path_for_zip
+        # print path_for_zip
         for root, dirs, files in os.walk(self.folder_path):
             #print root
             for file in files:
                 self.zip_file.write(os.path.join(root, file))
-                print os.path.join(root, file)
+                # print os.path.join(root, file)
 
 
 class ZipFolder_tarfile(ZipFolder):
@@ -70,7 +70,7 @@ class ZipFolder_tarfile(ZipFolder):
         self.label_of_method = compr_meth
         path_for_zip = self.get_path_for_zip()
         self.zip_file_path = path_for_zip + ".tar.gz"
-        #"w:gz" lets using other compression method, w:bz2
+        # "w:gz" lets using other compression method, w:bz2
         self.zip_file = tarfile.open(self.zip_file_path, compr_meth)
         self.zip_file.add(self.folder_path, arcname = "TarName")
         self.zip_file.close()

@@ -63,8 +63,8 @@ def create_plot(folder_size, compr_level_lst, compress_name_level_list):
     """
     list_of_colours = ["red", "blue", "green", "yellow", "lime"]
     print compr_level_lst
-    #converting volume of dir in bytes into MB
-    folder_size = float(folder_size) / 1048576
+    # converting volume of dir in bytes into MB
+    folder_size = float(folder_size) / (1024*1024)
     list_for_dir_size = [folder_size]
     for ind, compr_lvl in enumerate(compr_level_lst):
         plt.plot([folder_size], [compr_lvl], 'ro', label = compress_name_level_list[ind], color = list_of_colours[ind])
@@ -75,6 +75,6 @@ def create_plot(folder_size, compr_level_lst, compress_name_level_list):
     plt.ylabel('Compression level')
     plt.xlabel('Size of uncompressed dir')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=1, borderaxespad=0.)
-    #min and max values for both dimensions
+    # min and max values for both dimensions
     plt.axis([min_folder_size, max_folder_size, min_compr_lvl, max_compr_lvl])
     plt.show()
