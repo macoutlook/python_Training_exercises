@@ -3,3 +3,11 @@ False
 C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\Reports\report.db
 True
 "CHANGE : "
+
+Absolute paths should be given
+
+C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\java.log --> absolute path for log file which is parsed
+False --> if True, program uses re, if False there is simple iteration and comparing strings
+C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\Reports\report.html path --> Absolute path where Report will be generated 
+True --> flag with indicates whether report should be in html(True), or in .db(False)
+"CHANGE : " --> phrase which is searched

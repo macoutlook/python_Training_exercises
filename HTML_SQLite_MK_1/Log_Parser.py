@@ -7,6 +7,7 @@ import logging
 
 logg_hndl = None
 
+
 def search_in_file(path, is_regexp, searched_phrase):
     """
     this method is used for getting all lines from log file and returns list of lines
@@ -36,12 +37,17 @@ def find_with_re(lines, searched_phrase):
     """
     global logg_hndl
     list_with_dicts = []
-    regex = ".*" + searched_phrase + "(([\d,-]+[^,]*$)|([\d,-]+.*?),)"
+    # regex = ".*" + searched_phrase + "(([\d,-]+[^,]*$)|([\d,-]+.*?), ) "
+    # .* CHANGE : (([\d,-]+[^,]*$)|([\d,-].*?),)
+    regex = ".*" + searched_phrase + "(((.*?), )|(.*$))"
 
     for line in lines:
         matchObj = re.match(regex, line)
         if matchObj:
-            value = matchObj.group(1)
+            if matchObj.group(3) == None:
+                value = matchObj.group(1)
+            else:
+                value = matchObj.group(3)
             if(value != None):
                 matched_date_time = re.match("\[(.*?) (.*?)\] .*", line)
                 date = matched_date_time.group(1)

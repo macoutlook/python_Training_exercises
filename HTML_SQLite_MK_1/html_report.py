@@ -31,7 +31,7 @@ class HtmlReport(report.Report):
                 for dict in self.list_with_records:
                     #Everything will be in this indentation has place in <div:
                     with div():
-                        record = self.searched_phrase + dict[value_key] + "Date : " + dict["date"] + " Time : " + dict["time"]
+                        record = self.searched_phrase + dict[value_key] + " Date : " + dict["date"] + " Time : " + dict["time"]
                         p(record)
             except (KeyError) as e:
                 self.logger.error("Check given keys, used for generating html report, please")
