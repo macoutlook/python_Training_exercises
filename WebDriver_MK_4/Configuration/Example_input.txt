@@ -1,1 +1,5 @@
 C:\Users\lozoxmac\PycharmProjects\untitled\Seventh_task_Webdriver\Configuration\conf.ini
+
+
+C:\Users\lozoxmac\PycharmProjects\untitled\Seventh_task_Webdriver\Configuration\conf.ini --> Absolute path with configuration .ini file
+

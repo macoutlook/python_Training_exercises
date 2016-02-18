@@ -12,13 +12,14 @@ class HtmlReport(object):
         self.html_full_path = os.path.join(self.file_path, self.file_name)
 
     def create_html_step(self, line, img_for_rep = None):
-        #building html string and save it as doc
-        with document(title='Steps') as doc:
-            meta(content="text/html; charset=UTF-8")
+        # building html string and save it as doc
+        with document(title='Steps') as self.doc:
+            if not os.path.exists(self.html_full_path):
+                meta(content="text/html; charset=UTF-8")
             with div():
+                # saving doc string to file with given path, codecs.open gives possibility to set encoding
                 print line
                 p(line)
                 img("img", src='%s' % img_for_rep)
-        # saving doc string to file with given path, codecs.open gives possibility to set encoding
         with codecs.open(self.html_full_path, 'a', encoding="utf-8") as f:
-            f.write(doc.render())
+            f.write(self.doc.render())
