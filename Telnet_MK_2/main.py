@@ -4,7 +4,7 @@ import telnet
 import csv_handler
 import logging_handler
 import logging
-import socket
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -14,6 +14,7 @@ def parse_args():
     args = parser.parse_args()
 
     return args
+
 
 def main():
     args = parse_args()

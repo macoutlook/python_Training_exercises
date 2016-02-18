@@ -32,7 +32,7 @@ class ConfParser(object):
         self.telnet_conf_dict = self.__parse_section(self.__telnet_section)
 
     def __parse_section(self, section):
-        #By Config.options we can get all options for section, by Config.get we can get value for section and option
+        # By Config.options we can get all options for section, by Config.get we can get value for section and option
         options = self.__Config.options(section)
         dict_with_values = {}
 
