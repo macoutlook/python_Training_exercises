@@ -2,7 +2,7 @@ import argparse
 import configparser
 import telnet
 import csv_handler
-import logging_handler
+from logging_handler import LoggingHandler
 import logging
 
 
@@ -22,7 +22,7 @@ def main():
     csv_file_path = args.path_to_csv
     log_file_path = args.path_to_log
 
-    logg_hndl = logging_handler.LoggingHandler(log_file_path)
+    logg_hndl = LoggingHandler(log_file_path)
 
     csv_reader = csv_handler.CsvHandler(csv_file_path)
     list_with_comm = csv_reader.read_csv()
@@ -40,7 +40,8 @@ def main():
     telnet_client.execute_commands(list_with_comm)
     telnet_client.close_connection()
 
-    logg_hndl.end_logging()
+    LoggingHandler.end_logging()
+    print "Program terminates, log is available in path: %s" % log_file_path
 
 if __name__ == '__main__':
     main()
