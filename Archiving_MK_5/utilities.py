@@ -62,19 +62,37 @@ def create_plot(folder_size, compr_level_lst, compress_name_level_list):
     :return:
     """
     list_of_colours = ["red", "blue", "green", "yellow", "lime"]
-    print compr_level_lst
+    print "Calculated compression levels: %s" % compr_level_lst
     # converting volume of dir in bytes into MB
     folder_size = float(folder_size) / (1024*1024)
-    list_for_dir_size = [folder_size]
     for ind, compr_lvl in enumerate(compr_level_lst):
         plt.plot([folder_size], [compr_lvl], 'ro', label = compress_name_level_list[ind], color = list_of_colours[ind])
-    max_folder_size = folder_size + 2
-    min_folder_size = folder_size - 2
-    min_compr_lvl = min(compr_level_lst) - 0.01
-    max_compr_lvl = max(compr_level_lst) + 0.01
+    min_folder_size, max_folder_size= evaluate_axis(folder_size, folder_size)
+    min_compr_lvl, max_compr_lvl = evaluate_axis(min(compr_level_lst), max(compr_level_lst))
     plt.ylabel('Compression level')
     plt.xlabel('Size of uncompressed dir')
     plt.legend(bbox_to_anchor=(1.05, 1), loc=1, borderaxespad=0.)
     # min and max values for both dimensions
     plt.axis([min_folder_size, max_folder_size, min_compr_lvl, max_compr_lvl])
     plt.show()
+
+
+def evaluate_axis(min, max):
+    """
+    Helper method which evaluates min and max values for axis
+    :param min:
+    :param max:
+    :return:
+    """
+    int_size = int(min)
+    len_of_value = len(str(int_size))
+    mylist = list(xrange(len_of_value))
+    x = 0.01
+
+    for el in mylist:
+        x = x * 10
+
+    min = min - x
+    max = max + x
+
+    return min, max

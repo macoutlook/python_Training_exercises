@@ -1,10 +1,15 @@
 import threading, zipfile, os, tarfile
+'''
+Alternative version of execution zipping, includes using threads. At this moment is not used in main program, but can be simple attached
+'''
 
 class AsyncZipFile(threading.Thread):
+
     def __init__(self, dirPath, filePath):
         threading.Thread.__init__(self)
         self.filePath = filePath
         self.dirPath = dirPath
+
     def run(self):
         f = zipfile.ZipFile(self.filePath, 'w', zipfile.ZIP_DEFLATED)
         for root, dirs, files in os.walk(self.dirPath):
@@ -16,10 +21,12 @@ class AsyncZipFile(threading.Thread):
 
 
 class AsyncTarFile(AsyncZipFile, threading.Thread):
+
     def __init__(self, dirPath, filePath):
         threading.Thread.__init__(self)
         self.filePath = filePath
         self.dirPath = dirPath
+
     def run(self):
         compr_meth = "w:gz"
         f = tarfile.open(self.filePath, compr_meth)

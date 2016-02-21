@@ -13,27 +13,27 @@ def main():
 
     # getting uncompressed folder size
     folder_size = utilities.get_folder_size(args.path_to_folder)
-    print "Folder size is %s" % str(folder_size)
+    print "Folder size is %s bytes" % str(folder_size)
 
     # creating object for class zipfile and calculating its volume and compression level
     zip_folder_zf = ZipFolder.ZipFolder_zipfile(args.path_to_folder)
     zip_folder_zf.zip_with_ZipFile()
     zip_folder_zf.get_zipped_file_size()
-    print zip_folder_zf.zip_file_size
+    print "Size of compressed folder with ZipFile method is %s" % zip_folder_zf.zip_file_size
     compr_zf = utilities.calculate_compression(folder_size, zip_folder_zf.zip_file_size)
 
     # creating object for class tarfile and calculating its volume and compression level
     zip_folder_tf = ZipFolder.ZipFolder_tarfile(args.path_to_folder)
     zip_folder_tf.zip_with_tarfile()
     zip_folder_tf.get_zipped_file_size()
-    print zip_folder_tf.zip_file_size
+    print "Size of compressed folder with tarfile w:gz method is %s" % zip_folder_tf.zip_file_size
     compr_tf = utilities.calculate_compression(folder_size, zip_folder_tf.zip_file_size)
 
     # creating object for class tarfile and bzw compression method and calculating its volume and compression level
     zip_folder_tf_bz2 = ZipFolder.ZipFolder_tarfile(args.path_to_folder)
     zip_folder_tf_bz2.zip_with_tarfile("w:bz2")
     zip_folder_tf_bz2.get_zipped_file_size()
-    print zip_folder_tf_bz2.zip_file_size
+    print "Size of compressed folder with tarfile bz2 method is %s" %  zip_folder_tf_bz2.zip_file_size
     compr_tf_bz2 = utilities.calculate_compression(folder_size, zip_folder_tf_bz2.zip_file_size)
 
     # creating list with compression levels and creating plot
