@@ -5,18 +5,19 @@ def get_404(log):
     '''
     Find the set of all requests with status 404 in the given `log` sequence
     '''
-    # !!!Your code here!!!
-    list = []
-    for one_dict in log:
-        if str(one_dict['status']) == '404':
-            list.append(one_dict['request'])
-    return list
+    # list = []
+    # for one_dict in log:
+    #     if str(one_dict['status']) == '404':
+    #         list.append(one_dict['request'])
+    # return list
+
+    return [x['request'] for x in log if x['status'] == '404' ]
 
 
 def main():
     '''Main function'''
-    list_with_dict = apachelog.lines_from_dir('access-log', 'www')
-    #log = apachelog.apache_log(lines)
+    lines = apachelog.lines_from_dir('access-log*', 'www')
+    list_with_dict = apachelog.apache_log(lines)
     for r in sorted(get_404(list_with_dict)):
         print r
 

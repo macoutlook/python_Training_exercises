@@ -1,5 +1,26 @@
 import os
 import re
+import gzip
+import bz2
+
+
+def return_lines_from_file(fname):
+    '''
+    Generator - returns lines from any kind of files (plain, gzip, bzip)
+    '''
+    extension = os.path.splitext(fname)[-1]
+    if extension == ".bz2":
+        with bz2.BZ2File(fname, 'rb') as f:
+            for line in f:
+                yield line
+    elif extension == ".gz":
+        with gzip.open(fname, 'rb') as f:
+            for line in f:
+                yield line
+    else:
+        with open(fname, 'r') as f:
+            for line in f:
+                yield line
 
 
 def lines_from_dir(filepat, dirname):
@@ -8,22 +29,15 @@ def lines_from_dir(filepat, dirname):
     in directory `dirname`
     '''
     # !!!Your code here!!!
-    #http://docs.python.org/2/tutorial/classes.html#generators
     path = r".\\"
     dirname = path + dirname
     tab_with_files =[]
     # print dirname
     for root, dirs, files in os.walk(dirname, topdown=True):
-        for name in files:
-            if name == filepat:
-                # print(os.path.join(root, name))
-                tab_with_files.append(os.path.join(root, name))
-    #print tab_with_files
-    file_object = open(tab_with_files[0])
-    lines = file_object.readlines()
-    #print lines[2]
-    list_with_dict = apache_log(lines)
-    return list_with_dict
+        files = [x for x in files if re.match(filepat, x)]
+        for file in files:
+            for line in return_lines_from_file(os.path.join(root, file)):
+                yield line
 
 
 def apache_log(lines):
@@ -41,13 +55,4 @@ def apache_log(lines):
                          "host" : match_obj.group(1),
                          "user" : match_obj.group(3),
                          "method" : match_obj.group(5) }
-        list_with_dict.append(one_line_dict)
-    return list_with_dict
-
-
-def read_in_chunks(file_object):
-    while file_object:
-        data = file_object.Readline()
-        if not data:
-            break
-        yield data
+        yield one_line_dict
