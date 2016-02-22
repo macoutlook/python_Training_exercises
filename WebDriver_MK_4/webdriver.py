@@ -25,7 +25,6 @@ class WebDriverHandler(object):
     def execute_invokes(self):
         exec_element = ""
         self.driver.get(self.url)
-        size = 256, 256
         try:
             for index, xpath in enumerate(self.xpaths):
                 try:
@@ -40,7 +39,7 @@ class WebDriverHandler(object):
                 self.html_rep.create_html_step(exec_element, img_path)
         finally:
             self.driver.quit()
-            #self.delete_imgs()
+            # self.delete_imgs()
 
     def prepare_screenshot(self, index):
         img = pyscreenshot.grab()
