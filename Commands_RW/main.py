@@ -67,36 +67,36 @@ def main(argv):
     #
     # Missing input parameters should cause displaying help message.
     # Wrong command name in the first parameter, should cause displaying error message.
-
-    # !!!Your code here!!!
-    options, args = getopt.getopt(sys.argv[1:], 'hv',['help','verbose'])
-
-    if not options and not args:
-        _usage(os.path.realpath(__file__))
-    for opt in options:
-        if '-h' in opt or '--help' in opt:
-            _usage(os.path.realpath(__file__))
-        elif '-v' in opt or '--verbose' in opt:
-            loglevel = logging.DEBUG
-
-    command = args[0]
-    logger = _configlog(loglevel)
-    logger.debug('START')
-
     try:
-        cmdclass = comm.get_command(command)
+        options, args = getopt.getopt(sys.argv[1:], 'hv', ['help','verbose'])
 
-        # execute command provided by user as first parameter
-        # `cmdclass` it should be class, which implements given command
-        # this class should be instantiated with appropriate arguments
-        # and `execute` method of this instance should be called
-        #
-        cmd_object = cmdclass(loglevel=loglevel)
-        cmd_object.execute()
+        if not options and not args:
+            _usage(os.path.realpath(__file__))
+        for opt in options:
+            if '-h' in opt or '--help' in opt:
+                _usage(os.path.realpath(__file__))
+            elif '-v' in opt or '--verbose' in opt:
+                loglevel = logging.DEBUG
 
-    except Exception, ex:
-        logger.error('Command error: %s' % ex)
-    logger.debug('DONE')
+        command = args[0]
+        logger = _configlog(loglevel)
+        logger.debug('START')
+        try:
+            cmdclass = comm.get_command(command)
+
+            # execute command provided by user as first parameter
+            # `cmdclass` it should be class, which implements given command
+            # this class should be instantiated with appropriate arguments
+            # and `execute` method of this instance should be called
+            #
+            cmd_object = cmdclass(loglevel=loglevel)
+            cmd_object.execute()
+
+        except Exception, ex:
+            logger.error('Command error: %s' % ex)
+        logger.debug('DONE')
+    except getopt.GetoptError as e:
+        print e
 
 
 if __name__ == '__main__':
