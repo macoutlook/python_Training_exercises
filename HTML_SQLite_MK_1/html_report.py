@@ -21,7 +21,7 @@ class HtmlReport(report.Report):
         :return: result in boolean
         """
         result = True
-        value_key = self.searched_phrase[:-2]
+        value_key = self.searched_phrase
         # building html string and save it as doc
         self.logger.debug("Html Report is generated")
 
@@ -31,7 +31,7 @@ class HtmlReport(report.Report):
                 for dict in self.list_with_records:
                     # Everything will be in this indentation has place in <div:
                     with div():
-                        record = self.searched_phrase + dict[value_key] + " Date : " + dict["date"] + " Time : " + dict["time"]
+                        record = value_key +" : " + dict[value_key] + " Date : " + dict["date"] + " Time : " + dict["time"]
                         p(record)
             except (KeyError) as e:
                 self.logger.error("Check given keys, used for generating html report, please")

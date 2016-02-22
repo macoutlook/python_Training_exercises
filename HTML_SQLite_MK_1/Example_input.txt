@@ -1,13 +1,12 @@
-C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\java.log
+java.log
 False
-C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\Reports\report.db
+Reports\report.db
 html
 "CHANGE : "
 
-Absolute paths should be given
 
-C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\java.log --> absolute path for log file which is parsed
+java.log --> path for log file which is parsed
 False --> if True, program uses re, if False there is simple iteration and comparing strings
-C:\Users\lozoxmac\PycharmProjects\untitled\Fifth_task_log_HTML_SQLite\Reports\report.html path --> Absolute path where Report will be generated 
+Reports\report.html path --> path where Report will be generated
 html --> report is html(html) or sqlite(sqlite)
-"CHANGE : " --> phrase which is searched
+"CHANGE" --> phrase which is searched

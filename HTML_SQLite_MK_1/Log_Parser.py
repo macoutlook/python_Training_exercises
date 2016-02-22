@@ -34,6 +34,8 @@ def main():
             rep_obj = HtmlReport(list_with_found, args.path_to_result, args.searched_phrase)
     elif args.rep_type == "sqlite":
             rep_obj = SqlLiteReport(list_with_found, args.path_to_result)
+    else:
+        logg_hndl.prepare_other_notification("Report type %s is not recognized" % args.rep_type)
 
     if rep_obj:
         rep_obj.prepare_generating(logg_hndl)

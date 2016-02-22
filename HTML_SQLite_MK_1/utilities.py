@@ -37,7 +37,8 @@ def find_with_re(lines, searched_phrase, logg_hndl):
     list_with_dicts = []
     # regex = ".*" + searched_phrase + "(([\d,-]+[^,]*$)|([\d,-]+.*?), ) "
     # .* CHANGE : (([\d,-]+[^,]*$)|([\d,-].*?),)
-    regex = ".*" + searched_phrase + "(((.*?), )|(.*$))"
+
+    regex = ".*" + searched_phrase + " : (((.*?), )|(.*$))"
 
     for line in lines:
         matchObj = re.match(regex, line)
@@ -50,7 +51,7 @@ def find_with_re(lines, searched_phrase, logg_hndl):
                 matched_date_time = re.match("\[(.*?) (.*?)\] .*", line)
                 date = matched_date_time.group(1)
                 time = matched_date_time.group(2)
-                one_dict = {searched_phrase[:-2]: value, "date": date, "time": time}
+                one_dict = {searched_phrase: value, "date": date, "time": time}
                 list_with_dicts.append((one_dict))
     list_len = list_with_dicts.__len__()
 
