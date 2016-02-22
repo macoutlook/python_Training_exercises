@@ -3,6 +3,7 @@ import threading, zipfile, os, tarfile
 Alternative version of execution zipping, includes using threads. At this moment is not used in main program, but can be simple attached
 '''
 
+
 class AsyncZipFile(threading.Thread):
 
     def __init__(self, dirPath, filePath):
