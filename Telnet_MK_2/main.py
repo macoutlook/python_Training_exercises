@@ -21,12 +21,10 @@ def main():
     ini_file_path = args.path_to_ini
     csv_file_path = args.path_to_csv
     log_file_path = args.path_to_log
-
     logg_hndl = LoggingHandler(log_file_path)
-
+    logg_hndl.initiate_stdout_logging()
     csv_reader = csv_handler.CsvHandler(csv_file_path)
     list_with_comm = csv_reader.read_csv()
-
     conf_parser = configparser.ConfParser(ini_file_path)
 
     try:
@@ -40,8 +38,7 @@ def main():
     telnet_client.execute_commands(list_with_comm)
     telnet_client.close_connection()
 
-    LoggingHandler.end_logging()
-    print "Program terminates, log is available in path: %s" % log_file_path
+    logg_hndl.end_logging()
 
 if __name__ == '__main__':
     main()

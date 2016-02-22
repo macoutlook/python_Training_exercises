@@ -1,24 +1,28 @@
 import logging
+import sys
 
 
 class LoggingHandler(object):
     log_level = logging.DEBUG
 
     def __init__(self, file_path, log_lvl = log_level):
+        self.logger = logging.getLogger()
         logging.basicConfig(filename=file_path, level=log_lvl)
-        logging.info("Program starts")
+        self.logger.info("Program starts")
 
-    @staticmethod
-    def prepare_other_notification(msg, level=log_level):
+    def initiate_stdout_logging(self):
+        ch = logging.StreamHandler(sys.stdout)
+        self.logger.addHandler(ch)
+
+    def prepare_other_notification(self, msg, level=log_level):
         if level == logging.DEBUG:
-            logging.debug(msg)
+            self.logger.debug(msg)
         elif level == logging.INFO:
-            logging.info(msg)
+            self.logger.info(msg)
         elif level == logging.WARNING:
-            logging.warning(msg)
+            self.logger.warning(msg)
         elif level == logging.ERROR:
-            logging.error(msg)
+            self.logger.error(msg)
 
-    @staticmethod
-    def end_logging():
-        logging.info("End of program")
+    def end_logging(self):
+        self.logger.info("End of program")

@@ -2,6 +2,36 @@ INFO:root:Program starts
 DEBUG:CsvHandler:.csv file is read
 DEBUG:CsvHandler:.csv file was successfully read
 DEBUG:ConfParser:.ini file was successfully read
-ERROR:Telnet:[Errno 10060] A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond
-ERROR:Telnet:Unfortunately Telnet connection was not created
+DEBUG:Telnet:Telnet connection is open
+DEBUG:Telnet:Ubuntu 15.10
+mac-VirtualBox login:
+DEBUG:Telnet: Password: 
+DEBUG:Telnet:
+Last login: Mon Feb 22 18:09:58 CET 2016 from ww022037.eu.tieto.com on pts/3
+Welcome to Ubuntu 15.10 (GNU/Linux 4.2.0-16-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+143 packages can be updated.
+89 updates are security updates.
+
+mac@mac-VirtualBox:~$
+DEBUG:Telnet:Execute command ls -a
+DEBUG:Telnet: ls -a
+.                 .gconf         .sudo_as_admin_successful
+..                .i3            Szablony
+.bash_history     .ICEauthority  .vboxclient-clipboard.pid
+.bash_logout      .local         .vboxclient-display.pid
+.bashrc           .mozilla       .vboxclient-draganddrop.pid
+.cache            Muzyka         .vboxclient-seamless.pid
+.config           Obrazy         Wideo
+.dbus             Pobrane        .Xauthority
+.dmrc             .profile       .xsession-errors
+Dokumenty         Publiczny      .xsession-errors.old
+examples.desktop  Pulpit
+mac@mac-VirtualBox:~$
+DEBUG:Telnet:Execute command cd ..
+DEBUG:Telnet: cd ..
+mac@mac-VirtualBox:/home$ 
+DEBUG:Telnet:Telnet connection is closed
 INFO:root:End of program
