@@ -13,7 +13,6 @@ class Report(object):
     def generate_report(self):
         return "Generating report should be implemented here"
 
-
     def prepare_generating(self, logg_hndl):
         class_name = self.__class__.__name__
 

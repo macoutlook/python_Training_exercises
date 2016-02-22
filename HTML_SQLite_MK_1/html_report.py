@@ -22,14 +22,14 @@ class HtmlReport(report.Report):
         """
         result = True
         value_key = self.searched_phrase[:-2]
-        #building html string and save it as doc
+        # building html string and save it as doc
         self.logger.debug("Html Report is generated")
 
         with document(title='Records') as doc:
             h1('Records')
             try:
                 for dict in self.list_with_records:
-                    #Everything will be in this indentation has place in <div:
+                    # Everything will be in this indentation has place in <div:
                     with div():
                         record = self.searched_phrase + dict[value_key] + " Date : " + dict["date"] + " Time : " + dict["time"]
                         p(record)

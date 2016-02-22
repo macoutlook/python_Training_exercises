@@ -81,11 +81,9 @@ def find_without_re(lines, searched_phrase, log_hndl):
                 value = (word[found_ind:])
                 date_time = result[0]
                 date_time = date_time.split(" ")
-                date = date_time[0]
-                date = date[1:]
-                time = date_time[1]
+                date = date_time[0][1:]
                 # time is got without last character
-                time = time[:-1]
+                time = date_time[1][:-1]
                 one_dict = {searched_phrase[:-2]: value, "date": date, "time": time}
                 list_with_dicts.append((one_dict))
     list_len = list_with_dicts.__len__()
