@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -48,6 +49,45 @@ def create_plot(folder_size, compr_level_lst, compress_name_level_list):
     # min and max values for both dimensions
     plt.axis([min_folder_size, max_folder_size, min_compr_lvl, max_compr_lvl])
     plt.show()
+
+
+def create_bar_plot(folder_size, compr_level_lst, compress_name_level_list):
+    N = len(compr_level_lst)
+    folder_size = float(folder_size) / (1024*1024)
+    folder_size = [folder_size]*3
+    print tuple(folder_size)
+    folder_size_bar = tuple(folder_size)
+    ind = np.arange(N)  # the x locations for the groups
+    width = 0.15       # the width of the bars
+
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(ind, folder_size_bar, width, color='r')
+
+    compr_lvl_bar = tuple(compr_level_lst)
+    rects2 = ax.bar(ind + width, compr_lvl_bar, width, color='y')
+
+    # add some text for labels, title and axes ticks
+    ax.set_ylabel('Size')
+    ax.set_title('Scores by zip method', y=1.05)
+    ax.set_xticks(ind + width)
+    ax.set_xticklabels(tuple(compress_name_level_list))
+
+    ax.legend((rects1[0], rects2[0]), ('Size of folder', 'Size of compressed files'))
+
+    autolabel(rects1, ax)
+    autolabel(rects2, ax)
+
+    plt.show()
+
+
+def autolabel(rects, ax):
+    # attach some text labels
+    for rect in rects:
+        height = rect.get_height()
+        ax.text(rect.get_x() + rect.get_width()/2., 1.05*height,
+            '%f' % float(height),
+             ha='center', va='bottom')
+
 
 
 def evaluate_axis(min, max):

@@ -1,1 +1,2 @@
-C:\Users\lozoxmac\Documents\Folder --> It must be absolute path for Folder which is zipped
+C:\Users\lozoxmac\Documents\Folder --> path for Folder which is zipped(can be absolute or relative)
+C:\Users\lozoxmac\Documents\ --> path where zipped files should be saved (can be absolute or relative)
