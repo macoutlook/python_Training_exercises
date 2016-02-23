@@ -26,4 +26,4 @@ if __name__ == '__main__':
     # doctest in get_largest method is implemented
     import doctest
     doctest.testmod()
-    # main()
+    main()

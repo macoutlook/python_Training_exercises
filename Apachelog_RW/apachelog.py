@@ -31,8 +31,6 @@ def lines_from_dir(filepat, dirname):
     # !!!Your code here!!!
     path = r".\\"
     dirname = path + dirname
-    tab_with_files =[]
-    # print dirname
     for root, dirs, files in os.walk(dirname, topdown=True):
         files = [x for x in files if re.match(filepat, x)]
         for file in files:
@@ -42,8 +40,16 @@ def lines_from_dir(filepat, dirname):
 
 def apache_log(lines):
     '''Parse log and map fields to dictionary key/value pairs'''
-    list_with_dict = []
-    pattern = re.compile("(.*?) (.*?) (.*?) \[(.*?)\] \"(.*?) (.*?) (.*?)\" (.*?) (.*)")
+    pattern = re.compile(r'''(.*?)[ ]    # HOST
+                        (.*?)[ ]        # REFERRER
+                        (.*?)[ ]        # USER
+                        \[(.*?)\][ ]    # DATETIME
+                        \"(.*?)[ ]      # METHOD
+                        (.*?)[ ]        # REQUEST
+                        (.*?)\"[ ]      # PROTO
+                        (.*?)[ ]        # STATUS
+                        (.*)            # BYTES
+                        ''', re.X)
     for line in lines:
         match_obj = re.search(pattern, line)
         one_line_dict = {"status" : match_obj.group(8),
