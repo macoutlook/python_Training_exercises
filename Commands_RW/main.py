@@ -81,6 +81,7 @@ def main(argv):
         command = args[0]
         logger = _configlog(loglevel)
         logger.debug('START')
+
         try:
             cmdclass = comm.get_command(command)
 

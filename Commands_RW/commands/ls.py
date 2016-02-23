@@ -9,5 +9,5 @@ class Ls(Command):
     def execute(self):
         if _platform == "win32" or _platform == "win64":
             self._run(['dir', '/b'])
-        elif _platform == "linux" or _platform =="linux2":
+        elif _platform == "linux" or _platform == "linux2":
             self._run(['ls', '-l'])

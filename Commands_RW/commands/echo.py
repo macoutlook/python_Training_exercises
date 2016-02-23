@@ -7,4 +7,3 @@ class Echo(Command):
 
     def execute(self):
         self._run(['echo', 'Hello, World!!!'])
-
